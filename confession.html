@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valentine's Day Confessions</title>
+  <style>
+    /* CSS for website design */
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #ff6699;
+      padding: 1.5em 0;
+      text-align: center;
+      color: #fff;
+      font-size: 2em;
+    }
+    section {
+      margin: 2em;
+    }
+    form {
+      background-color: #fff;
+      padding: 2em;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 0.8em;
+      margin-bottom: 1.5em;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1em;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 0.8em 1.5em;
+      background-color: #ff6699;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #ff4d80;
+    }
+    .confession {
+      background-color: #fff;
+      margin-bottom: 1.5em;
+      padding: 1.5em;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>lbs college of engineering</h2>
+    <h1>Valentine's Day Confessions</h1>
+  </header>
+  <section>
+    <form id="confessionForm">
+      <h2>Submit Your Confession</h2>
+      <input type="text" id="confessionTitle" placeholder="Confession Title" required>
+      <textarea id="confessionText" placeholder="Write your confession..." required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+  <section id="confessionsSection">
+    <h2>Latest Confessions</h2>
+    <div class="confession">
+      <h3>Confession Title</h3>
+      <p>Confession text goes here...</p>
+      <p>Posted on: Date and Time</p>
+    </div>
+    <!-- More confessions would go here -->
+  </section>
+
+  <script>
+    // JavaScript for anonymous posting and displaying confessions
+    document.getElementById('confessionForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      let title = document.getElementById('confessionTitle').value;
+      let text = document.getElementById('confessionText').value;
+      displayConfession(title, text);
+    });
+
+    function displayConfession(title, text) {
+      let confessionsSection = document.getElementById('confessionsSection');
+      let confessionDiv = document.createElement('div');
+      confessionDiv.className = 'confession';
+      confessionDiv.innerHTML = `
+      <h3>${title}</h3>
+      <p>${text}</p>
+      <p>${getCurrentDateTime()}</p>
+      `;
+      confessionsSection.appendChild(confessionDiv);
+      document.getElementById('confessionForm').reset();
+      // You can add code here to send the confession data to the server
+    }
+
+    function getCurrentDateTime() {
+      let currentDateTime = new Date();
+      let date = currentDateTime.toLocaleDateString('en-US');
+      let time = currentDateTime.toLocaleTimeString('en-US');
+      return `Posted on: ${date} at ${time}`;
+    }
+  </script>
+</body>
+</html>
